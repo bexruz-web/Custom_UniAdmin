@@ -18,6 +18,9 @@ def dictfetchone(cursor):
 
 
 def get_data_from_table(table_name):
+    # connection.cursor() yordamida bazaga  ulanamiz va cursor obyektini ochamiz
     with closing(connection.cursor()) as cursor:
+        # Berilgan jadval nomi (table_name) asosida SQL so'rovini bajaradi
         cursor.execute(f"SELECT * FROM {table_name}")
+        # Jadvaldagilarni lug'at shaklida qaytaradi
         return dictfetchall(cursor)
