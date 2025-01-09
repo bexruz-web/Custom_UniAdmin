@@ -31,7 +31,9 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label class=" form-control-label">Name</label>
+                                        <label class=" form-control-label">Faculty</label>
                                         {{ form.name }}
+                                        {{ form.faculty }}
                                     </div>
 
                                     {% if model %}
