@@ -10,6 +10,7 @@ class Faculty(models.Model):
 
 class Kafedra(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
