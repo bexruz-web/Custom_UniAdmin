@@ -34,7 +34,8 @@ class TeachersForm(forms.ModelForm):
         model = Teachers
         fields = "__all__"
         widgets = {
-            "name": forms.TextInput(attrs={'class': 'form-control'})
+            "first_name": forms.TextInput(attrs={'class': 'form-control'}),
+            "last_name": forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -43,7 +44,12 @@ class GroupsForm(forms.ModelForm):
         model = Groups
         fields = "__all__"
         widgets = {
-            "name": forms.TextInput(attrs={'class': 'form-control'})
+            "name": forms.TextInput(attrs={'class': 'form-control'}),
+            "year": forms.TextInput(attrs={'class': 'form-control'}),
+            "faculty_id": forms.TextInput(attrs={'class': 'form-control'}),
+            "kafedra_id": forms.TextInput(attrs={'class': 'form-control'}),
+            "mentor_id": forms.TextInput(attrs={'class': 'form-control'}),
+            "subjects_id": forms.TextInput(attrs={'class': 'form-control'}),
         }
 
 
@@ -52,5 +58,9 @@ class StudentsForm(forms.ModelForm):
         model = Students
         fields = "__all__"
         widgets = {
-            "name": forms.TextInput(attrs={'class': 'form-control'})
+            "first_name": forms.TextInput(attrs={'class': 'form-control'}),
+            "last_name": forms.TextInput(attrs={'class': 'form-control'}),
+            "phone_number": forms.TextInput(attrs={'class': 'form-control'}),
+            "date_of_birth": forms.TextInput(attrs={'class': 'form-control'}),
+            "group_id": forms.TextInput(attrs={'class': 'form-control'}),
         }
