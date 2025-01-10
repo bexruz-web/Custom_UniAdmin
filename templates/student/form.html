@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
-                            <h2 class="title-1">Add Teacher</h2>
+                            <h2 class="title-1">Add Student</h2>
                         </div>
                     </div>
                 </div>
@@ -38,8 +38,16 @@
                                          {{ form.last_name }}
                                     </div>
                                     <div>
-                                        <label class=" form-control-label">Subject Name</label>
-                                        {{ form.subjects }}
+                                        <label class=" form-control-label">Phone Number</label>
+                                        {{ form.phone_number }}
+                                    </div>
+                                    <div>
+                                        <label class=" form-control-label">DD/MM/YYYY</label>
+                                        {{ form.date_of_birth }}
+                                    </div>
+                                    <div>
+                                        <label class=" form-control-label">Group</label>
+                                        {{ form.group }}
                                     </div>
 
                                     {% if model %}
