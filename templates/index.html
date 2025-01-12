@@ -196,7 +196,7 @@
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Single Bar Chart</h3>
+                                <h3 class="title-2 m-b-40">Universitet ko'rsatkichlari</h3>
                                 <canvas id="singelBarChart1"></canvas>
                             </div>
                         </div>
@@ -205,7 +205,7 @@
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Pie Chart</h3>
+                                <h3 class="title-2 m-b-40">Universitet ma'lumotlari taqsimoti</h3>
                                 <canvas id="pieChart1"></canvas>
                             </div>
                         </div>
@@ -230,11 +230,11 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Sun", "Mon", "Tu", "Wed", "Th", "Fri", "Sat"],
+          labels: ["Faculty", "Kafedra", "Subject", "Teacher", "Group", "Student"],
           datasets: [
             {
-              label: "My First dataset",
-              data: [40, 55, 75, 81, 56, 55, 40],
+              label: "Soni",
+              data: [{{ counts.faculties|intcomma}}, {{ counts.kafedras|intcomma }}, {{ counts.subjects|intcomma }}, {{ counts.teachers|intcomma }}, {{ counts.groups|intcomma }}, {{ counts.students|intcomma }}],
               borderColor: "rgba(0, 123, 255, 0.9)",
               borderWidth: "0",
               backgroundColor: "rgba(0, 123, 255, 0.5)"
@@ -281,26 +281,28 @@
         type: 'pie',
         data: {
           datasets: [{
-            data: [45, 25, 20, 10],
+            data: [{{ counts.faculties|intcomma}}, {{ counts.kafedras|intcomma }}, {{ counts.subjects|intcomma }}, {{ counts.teachers|intcomma }}, {{ counts.groups|intcomma }}, {{ counts.students|intcomma }}],
             backgroundColor: [
               "rgba(0, 123, 255,0.9)",
+              "rgba(0, 123, 255,0.8)",
               "rgba(0, 123, 255,0.7)",
+              "rgba(0, 123, 255,0.6)",
               "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
+              "rgba(0, 123, 255,0.4)",
+
             ],
             hoverBackgroundColor: [
               "rgba(0, 123, 255,0.9)",
+              "rgba(0, 123, 255,0.8)",
               "rgba(0, 123, 255,0.7)",
+              "rgba(0, 123, 255,0.6)",
               "rgba(0, 123, 255,0.5)",
-              "rgba(0,0,0,0.07)"
+              "rgba(0, 123, 255,0.4)",
+
             ]
 
           }],
-          labels: [
-            "Green",
-            "Green",
-            "Green"
-          ]
+          labels: ["Faculty", "Kafedra", "Subject", "Teacher", "Group", "Student"]
         },
         options: {
           legend: {
