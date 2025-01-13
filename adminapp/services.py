@@ -38,12 +38,13 @@ def get_kafedra_with_faculty():
 
 
 # adminapp_teachers jadvaliga adminapp_subjects dan subjects nomlarini olish uchun LEFT JOIN ishlatildi
-def get_teachers_with_subjects():
+def get_teachers_with_details():
     with closing(connection.cursor()) as cursor:
         cursor.execute("""
-            SELECT adminapp_teachers.*, adminapp_subjects.name AS subject_name
+            SELECT adminapp_teachers.*, adminapp_subjects.name AS subject_name, adminapp_kafedra.name AS kafedra_name
             FROM adminapp_teachers
             LEFT JOIN adminapp_subjects ON adminapp_teachers.subjects_id = adminapp_subjects.id
+            LEFT JOIN adminapp_kafedra ON adminapp_teachers.kafedra_id = adminapp_kafedra.id
         """)
         return dictfetchall(cursor)
 
@@ -52,38 +53,26 @@ def get_teachers_with_subjects():
     Bu function adminapp_groups jadvalidan guruhlar va ularga tegishli ma'lumotlarni olish uchun.
     
     LEFT JOIN lar orqali quyidagi bog'liq jadvallardan ma'lumot olinadi:
-    adminapp_faculty - guruhning fakulteti
     adminapp_kafedra - guruhning kafedrasi
     adminapp_teachers - guruhning mentori
-    adminapp_groups_subjects - ManyToManyField() orqali guruh va predmetlarni bog'lovchi jadval
-    adminapp_subjects - guruhga tegishli predmetlar
-    
-    GROUP_CONCAT yordamida guruhning barcha predmetlari bitta qatorga yig'iladi.
-"""
+    """
+
 
 def get_groups_with_details():
     with closing(connection.cursor()) as cursor:
         cursor.execute("""
             SELECT 
                 adminapp_groups.*,
-                adminapp_faculty.name AS faculty_name, 
                 adminapp_kafedra.name AS kafedra_name, 
-                adminapp_teachers.first_name AS mentor_name,
-                GROUP_CONCAT(adminapp_subjects.name) as subjects
+                CONCAT(adminapp_teachers.first_name, ' ', adminapp_teachers.last_name) AS mentor_fullname
             FROM 
                 adminapp_groups
-            LEFT JOIN
-                adminapp_faculty ON adminapp_groups.faculty_id = adminapp_faculty.id
             LEFT JOIN
                 adminapp_kafedra ON adminapp_groups.kafedra_id = adminapp_kafedra.id
             LEFT JOIN
                 adminapp_teachers ON adminapp_groups.mentor_id = adminapp_teachers.id    
-            LEFT JOIN
-                adminapp_groups_subjects ON adminapp_groups.id = adminapp_groups_subjects.groups_id
-            LEFT JOIN
-                adminapp_subjects ON adminapp_groups_subjects.subjects_id = adminapp_subjects.id
-            GROUP BY
-                adminapp_groups.id
+
+            
         """)
         return dictfetchall(cursor)
 
