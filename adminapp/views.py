@@ -217,7 +217,7 @@ def teacher_delete(request, pk):
 
 @login_required_decorator
 def teachers_list(request):
-    teachers = services.get_teachers_with_subjects()
+    teachers = services.get_teachers_with_details()
     ctx = {
         'teachers': teachers
     }
