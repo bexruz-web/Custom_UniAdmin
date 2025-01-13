@@ -224,17 +224,35 @@
 <script>
 (function($){
   try {
-    var ctx = document.getElementById("singelBarChart1");
-    if (ctx) {
-      ctx.height = 150;
-      var myChart = new Chart(ctx, {
+    // Ma'lumotlar massivlari
+    var dataValues = [
+      { label: "Faculty", value: {{ counts.faculties|intcomma }} },
+      { label: "Kafedra", value: {{ counts.kafedras|intcomma }} },
+      { label: "Subject", value: {{ counts.subjects|intcomma }} },
+      { label: "Teacher", value: {{ counts.teachers|intcomma }} },
+      { label: "Group", value: {{ counts.groups|intcomma }} },
+      { label: "Student", value: {{ counts.students|intcomma }} }
+    ];
+
+    // Tartiblash (ko'pligi bo'yicha kamayish tartibida)
+    dataValues.sort((a, b) => b.value - a.value);
+
+    // Tartiblangan qiymatlarni ajratib olish
+    var sortedLabels = dataValues.map(item => item.label);
+    var sortedData = dataValues.map(item => item.value);
+
+    // Bar chart
+    var ctxBar = document.getElementById("singelBarChart1");
+    if (ctxBar) {
+      ctxBar.height = 150;
+      var myBarChart = new Chart(ctxBar, {
         type: 'bar',
         data: {
-          labels: ["Faculty", "Kafedra", "Subject", "Teacher", "Group", "Student"],
+          labels: sortedLabels,
           datasets: [
             {
               label: "Soni",
-              data: [{{ counts.faculties|intcomma}}, {{ counts.kafedras|intcomma }}, {{ counts.subjects|intcomma }}, {{ counts.teachers|intcomma }}, {{ counts.groups|intcomma }}, {{ counts.students|intcomma }}],
+              data: sortedData,
               borderColor: "rgba(0, 123, 255, 0.9)",
               borderWidth: "0",
               backgroundColor: "rgba(0, 123, 255, 0.5)"
@@ -247,13 +265,11 @@
             labels: {
               fontFamily: 'Poppins'
             }
-
           },
           scales: {
             xAxes: [{
               ticks: {
                 fontFamily: "Poppins"
-
               }
             }],
             yAxes: [{
@@ -267,29 +283,22 @@
       });
     }
 
-  } catch (error) {
-    console.log(error);
-  }
-
-  try {
-
-    //pie chart
-    var ctx = document.getElementById("pieChart1");
-    if (ctx) {
-      ctx.height = 200;
-      var myChart = new Chart(ctx, {
+    // Pie chart
+    var ctxPie = document.getElementById("pieChart1");
+    if (ctxPie) {
+      ctxPie.height = 200;
+      var myPieChart = new Chart(ctxPie, {
         type: 'pie',
         data: {
           datasets: [{
-            data: [{{ counts.faculties|intcomma}}, {{ counts.kafedras|intcomma }}, {{ counts.subjects|intcomma }}, {{ counts.teachers|intcomma }}, {{ counts.groups|intcomma }}, {{ counts.students|intcomma }}],
+            data: sortedData,
             backgroundColor: [
               "rgba(0, 123, 255,0.9)",
               "rgba(0, 123, 255,0.8)",
               "rgba(0, 123, 255,0.7)",
               "rgba(0, 123, 255,0.6)",
               "rgba(0, 123, 255,0.5)",
-              "rgba(0, 123, 255,0.4)",
-
+              "rgba(0, 123, 255,0.4)"
             ],
             hoverBackgroundColor: [
               "rgba(0, 123, 255,0.9)",
@@ -297,12 +306,10 @@
               "rgba(0, 123, 255,0.7)",
               "rgba(0, 123, 255,0.6)",
               "rgba(0, 123, 255,0.5)",
-              "rgba(0, 123, 255,0.4)",
-
+              "rgba(0, 123, 255,0.4)"
             ]
-
           }],
-          labels: ["Faculty", "Kafedra", "Subject", "Teacher", "Group", "Student"]
+          labels: sortedLabels
         },
         options: {
           legend: {
@@ -310,22 +317,17 @@
             labels: {
               fontFamily: 'Poppins'
             }
-
           },
           responsive: true
         }
       });
     }
 
-
   } catch (error) {
     console.log(error);
   }
 
 })(jQuery);
-
-
-
 </script>
-{% endblock%}
+{% endblock %}
 {% endblock %}
