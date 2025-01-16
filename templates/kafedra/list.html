@@ -37,7 +37,7 @@
                                 <tbody>
                                     {% for kafedra in kafedras %}
                                     <tr>
-                                        <td>{{ kafedra.id }}</td>
+                                        <td>{{ forloop.counter }}</td>
                                         <td>{{ kafedra.name }}</td>
                                         <td>{{ kafedra.faculty_name }}</td>
                                         <td>

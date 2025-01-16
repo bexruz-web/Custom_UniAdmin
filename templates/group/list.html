@@ -38,7 +38,7 @@
                                 <tbody>
                                     {% for group in groups %}
                                     <tr>
-                                        <td>{{ group.id }}</td>
+                                        <td>{{ forloop.counter }}</td>
                                         <td>{{ group.name }}</td>
                                         <td>{{ group.kafedra_name }}</td>
                                         <td>{{ group.mentor_fullname }}</td>

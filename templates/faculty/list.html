@@ -36,7 +36,7 @@
                                 <tbody>
                                     {% for faculty in faculties %}
                                     <tr>
-                                        <td>{{ faculty.id }}</td>
+                                        <td>{{ forloop.counter }}</td>
                                         <td>{{ faculty.name }}</td>
                                         <td>
                                             <div class="table-data-feature">
