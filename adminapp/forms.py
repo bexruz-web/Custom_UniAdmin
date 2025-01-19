@@ -36,6 +36,7 @@ class TeachersForm(forms.ModelForm):
         widgets = {
             "first_name": forms.TextInput(attrs={'class': 'form-control'}),
             "last_name": forms.TextInput(attrs={'class': 'form-control'}),
+            "subjects": forms.Select(attrs={'class': 'form-control'}),
             "kafedra_id": forms.Select(attrs={'class': 'form-control'}),
         }
 
