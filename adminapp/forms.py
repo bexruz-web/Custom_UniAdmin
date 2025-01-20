@@ -65,4 +65,5 @@ class StudentsForm(forms.ModelForm):
             "phone_number": forms.NumberInput(attrs={'class': 'form-control'}),
             "date_of_birth": forms.DateInput(attrs={'class': 'form-control'}),
             "group_id": forms.Select(attrs={'class': 'form-control'}),
+            "image": forms.FileInput(attrs={'class': 'form-control'})
         }
