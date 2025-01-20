@@ -34,6 +34,7 @@
                                         <th>Phone Number</th>
                                         <th>Date of Birth</th>
                                         <th>Group</th>
+                                        <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,7 @@
                                         <td>{{ student.phone_number }}</td>
                                         <td>{{ student.date_of_birth }}</td>
                                         <td>{{ student.group_name }}</td>
+                                        <td><img class="img" src="/media/{{ student.image }}" alt="photo" width="40px" height="60px"></td>
                                         <td>
                                             <div class="table-data-feature">
                                                 <a class="item" data-toggle="tooltip" href="{% url 'student_edit' pk=student.id %}" data-placement="top" title="" data-original-title="Edit">
